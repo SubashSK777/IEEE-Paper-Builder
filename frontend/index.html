@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEEE Paper Builder MVP-2</title>
+    <link rel="stylesheet" href="styles.css?v=6">
+    <!-- Load FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body data-theme="light">
+    <header>
+        <div class="header-left">
+            <h1>Paper Builder</h1>
+        </div>
+        <div class="header-controls">
+            <button id="theme-toggle" class="icon-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+            <div class="preset-group">
+                <label for="preset"><i class="fas fa-sliders-h"></i> Format Preset:</label>
+                <select id="preset">
+                    <option value="ieee">IEEE Standard Format</option>
+                    <option value="custom">Custom Format</option>
+                </select>
+            </div>
+            <button id="export-docx-btn" class="primary-btn"><i class="fas fa-file-export"></i> Export DOCX</button>
+        </div>
+    </header>
+
+    <!-- App body -->
+    <main>
+        <!-- Sections editor -->
+        <div class="left-panel">
+            <div class="panel-header">
+                <h2><i class="fas fa-layer-group"></i> Document Sections</h2>
+                <div class="header-actions">
+                    <button id="add-section-btn" class="secondary-btn"><i class="fas fa-plus"></i> Add Section</button>
+                </div>
+            </div>
+            <div id="sections-container">
+                <!-- Dynamic Sections go here -->
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="right-panel">
+
+            <section class="figures-section">
+                <div class="panel-header">
+                    <h2><i class="fas fa-images"></i> Figures Manager</h2>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-info-circle"></i> Place <code>[FIGURE &lt;num&gt;]</code> in your section text
+                    exactly where you want the figure to appear.
+                </div>
+                <form id="figure-form">
+                    <div class="input-group">
+                        <label>Image File:</label>
+                        <label for="fig-file" class="file-upload-label" id="file-upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i> <span id="fig-file-name">Select Image File...</span>
+                        </label>
+                        <input type="file" id="fig-file" accept="image/png, image/jpeg, image/tiff" required
+                            class="hidden-file-input">
+                    </div>
+                    <div class="input-group">
+                        <label>Figure Number:</label>
+                        <input type="text" id="fig-number" placeholder="e.g. 1" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Caption:</label>
+                        <input type="text" id="fig-caption" required>
+                    </div>
+                    <button type="submit" class="primary-btn"><i class="fas fa-upload"></i> Upload Figure</button>
+                </form>
+                <ul id="figures-list" class="item-list"></ul>
+            </section>
+
+            <section class="tables-section">
+                <div class="panel-header">
+                    <h2><i class="fas fa-table"></i> Tables Manager</h2>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-info-circle"></i> Place <code>[TABLE &lt;num&gt;]</code> in your section text.
+                </div>
+                <div class="input-group">
+                    <label>Grid Layout (<span id="grid-size-label">3x3</span>): <small>(Hover to select, Click to
+                            generate)</small></label>
+                    <div id="grid-selector" class="grid-selector">
+                        <!-- JS injected interactive dots -->
+                    </div>
+                </div>
+
+                <form id="table-form" class="hidden" style="margin-top: 1rem;">
+                    <div class="input-group">
+                        <label>Table Number:</label>
+                        <input type="text" id="tab-number" placeholder="e.g. 1" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Caption:</label>
+                        <input type="text" id="tab-caption" required>
+                    </div>
+                    <label>Table Data <small>(Paste tab-separated data into first cell to auto-fill)</small>:</label>
+                    <div id="tab-grid" style="margin-bottom: 0.5rem; display: grid; gap: 4px; overflow-x: auto;">
+                        <!-- JS injected table cells -->
+                    </div>
+                    <button type="submit" class="primary-btn"><i class="fas fa-plus"></i> Add Table</button>
+                </form>
+                <ul id="tables-list" class="item-list"></ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Custom Preset Modal -->
+    <div id="custom-preset-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-cog"></i> Custom Preset Configuration</h3>
+                <span class="close-btn" id="close-preset-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p class="modal-desc">Configure your custom paper formatting options.</p>
+                <div class="input-group">
+                    <label>Base Template:</label>
+                    <select id="load-base-preset">
+                        <option value="ieee">IEEE Standard (2-Column)</option>
+                        <option value="blank">Blank (1-Column)</option>
+                    </select>
+                    <button type="button" id="apply-base-preset" class="secondary-btn btn-small">Load Settings</button>
+                </div>
+                <hr>
+                <div class="input-group-row">
+                    <div class="input-group">
+                        <label>Primary Font:</label>
+                        <select id="custom-font">
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Arial">Arial</option>
+                            <option value="Calibri">Calibri</option>
+                            <option value="Garamond">Garamond</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Title Size (pt):</label>
+                        <input type="number" id="title-size" value="24" min="10" max="72">
+                    </div>
+                </div>
+                <!-- Margin inputs (in inches) -->
+                <div class="input-group-row">
+                    <div class="input-group">
+                        <label>Top Margin (in):</label>
+                        <input type="number" id="margin-top" value="0.75" step="0.1" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Bottom Margin (in):</label>
+                        <input type="number" id="margin-bottom" value="1.0" step="0.1" min="0">
+                    </div>
+                </div>
+                <div class="input-group-row">
+                    <div class="input-group">
+                        <label>Left Margin (in):</label>
+                        <input type="number" id="margin-left" value="0.63" step="0.1" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Right Margin (in):</label>
+                        <input type="number" id="margin-right" value="0.63" step="0.1" min="0">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button id="save-preset" class="success-btn">Save Configuration</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Suggestion Modal -->
+    <div id="ai-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-magic"></i> AI Suggestion</h3>
+                <span class="close-btn" id="close-ai-modal">&times;</span>
+            </div>
+            <textarea id="ai-suggested-text" rows="12" readonly></textarea>
+            <div class="modal-actions">
+                <button id="accept-ai" class="success-btn"><i class="fas fa-check"></i> Accept</button>
+                <button id="reject-ai" class="danger-btn"><i class="fas fa-times"></i> Reject</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js?v=6"></script>
+</body>
+
+</html>
