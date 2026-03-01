@@ -1,66 +1,105 @@
-# IEEE Paper Builder Suite
+<div align="center">
 
-This suite contains an intelligent backend API and a dynamic frontend UI specifically built to help construct, refine, and format IEEE academic papers.
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=250&section=header&text=IEEE%20Paper%20Builder&fontSize=60&animation=fadeIn&fontAlignY=38&desc=Intelligent%20Academic%20Paper%20Formatting&descAlignY=51&descAlign=62" width="100%" />
 
-## Project Structure
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Node.js](https://img.shields.io/badge/Node.js-Frontend-green?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
+[![Gemini API](https://img.shields.io/badge/Google%20Gemini-AI%20Powered-orange?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
 
-1. **`backend/`**: A Python-based API utilizing the Google Gemini API to analyze, review, and correct various sections of IEEE papers (e.g., Abstract, Introduction, Equations, etc.).
-2. **`frontend/`**: The frontend UI for users to seamlessly interact with the API, allowing them to construct their paper sections efficiently.
+<br/>
 
-## Prerequisites
+<p align="center">
+  <em>A powerful, dynamic tool suite designed to seamlessly construct, refine, and format IEEE academic papers using the power of Google Gemini AI.</em>
+</p>
 
-To run this project, make sure you have:
+</div>
 
-*   **Node.js**
-*   **Python 3.8+**
-*   **Google Gemini API Key** (Make sure to keep this safe!)
+---
 
-## Setup backend
+## ✨ Features
 
-Create a `.env` file inside the `backend` directory.
+*   🤖 **AI-Powered Refinement**: Automatically fix grammar, expand, or condense text seamlessly using Gemini 2.5 Flash.
+*   📜 **IEEE Formatting**: Ensures your paper sections are primed and ready for IEEE template standards.
+*   📐 **Smart Equations**: Transforms raw formulas into perfectly styled Unicode math syntax inside `[MATH] ... [/MATH]` blocks.
+*   ⚡ **Real-time Processing**: Fast, robust, and highly efficient processing flow.
 
-```
-GEMINI_API_KEY=your_gemini_api_key_here
-```
+<br/>
 
-Navigate inside the backend directory:
+## 📂 Project Structure
 
-```bash
-cd backend
-```
+| Directory | Description |
+| :--- | :--- |
+| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Snake.png" alt="Snake" width="25" height="25" /> `backend/` | Python-based application handling the Gemini AI integrations, text sanitization, and processing logic. |
+| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Desktop%20Computer.png" alt="Desktop Computer" width="25" height="25" /> `frontend/` | Dynamic UI allowing users to easily paste, refine, and construct their paper sections effortlessly. |
 
-Install standard python libraries (like `google.generativeai`, `python-dotenv`). (Assuming you have a `requirements.txt` file setup for the backend Python environment; otherwise, install manually):
-```bash
-pip install -r requirements.txt
-```
+<br/>
 
-Run the API:
-```bash
-python main.py
-```
+## 🚀 Getting Started
 
-## Setup Frontend
+Follow these steps to get the project up and running on your local machine.
 
-Navigate inside the frontend directory:
+### 📋 Prerequisites
 
-```bash
-cd frontend
-```
+Make sure you have the following installed:
+*   [Node.js](https://nodejs.org/)
+*   [Python 3.8+](https://python.org/)
+*   **Google Gemini API Key** (Get it from [Google AI Studio](https://aistudio.google.com/))
 
-Install modules:
-```bash
-npm install
-```
+---
 
-Start the application:
-```bash
-npm start
-``` 
+### 🛠️ Backend Setup (Python)
 
-## Security Note
+<img align="right" src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Laptop.png" width="150" height="150" alt="Laptop"/>
 
-*   **Important**: This repository is set up with `.gitignore` properly. Never commit the `.env` file since it exposes your sensitive API Keys!
+1. **Navigate to the backend directory:**
+   ```bash
+   cd backend
+   ```
 
-## Contributing
+2. **Set up your environment variables:**
+   Create a `.env` file and strictly keep your isolated Keys safe:
+   ```env
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
 
-Pull requests are always welcome!
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Run the API:**
+   ```bash
+   python main.py
+   ```
+
+<br/>
+
+### 🎨 Frontend Setup (Node)
+
+1. **Navigate to the frontend directory:**
+   ```bash
+   cd frontend
+   ```
+
+2. **Install modules:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the application:**
+   ```bash
+   npm start
+   ```
+
+---
+
+## 🤝 Contributing
+
+Pull requests are always welcome! Let's build the perfect academic writing assistant together.
+
+<br/>
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Rocket.png" alt="Rocket" width="50" height="50" />
+  <h3>Built with ❤️ for Researchers and Academics</h3>
+</div>
