@@ -1,5 +1,10 @@
 <div align="center">
 
+[![Python](https://img.shields.io/badge/Python-3.11%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://reactjs.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=250&section=header&text=IEEE%20Paper%20Builder&fontSize=60&animation=fadeIn&fontAlignY=38&desc=Intelligent%20Academic%20Paper%20Formatting&descAlignY=51&descAlign=62" width="100%" />
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
